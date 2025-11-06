@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Борис Рихтер - Продуктовый менеджер & Автоматизация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --surgical-steel: #A6A6A6;
+            --surgical-dark: #8A8A8A;
+            --surgical-light: #C4C4C4;
+            --black: #000000;
+            --black-dark: #0A0A0A;
+            --black-medium: #1A1A1A;
+            --accent: #A6A6A6;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8B8B8;
+            
+            /* Размеры шрифтов */
+            --font-xl: 40px;
+            --font-lg: 25px;
+            --font-md: 20px;
+            --font-sm: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(166, 166, 166, 0.2);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-md);
+            color: var(--surgical-steel);
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--surgical-steel);
+            text-decoration: none;
+            font-size: var(--font-sm);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--surgical-steel);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-button {
+            background: transparent;
+            border: 1px solid var(--surgical-steel);
+            color: var(--surgical-steel);
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-size: var(--font-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-button:hover {
+            background: var(--surgical-steel);
+            color: var(--black);
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--black);
+            border-bottom: 1px solid rgba(166, 166, 166, 0.1);
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-xl);
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--surgical-steel);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-lg);
+            color: var(--surgical-dark);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .experience-badge {
+            background: rgba(166, 166, 166, 0.1);
+            border: 1px solid var(--surgical-steel);
+            color: var(--surgical-steel);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: var(--font-sm);
+            display: inline-block;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .cta-block {
+            background: rgba(166, 166, 166, 0.05);
+            border: 1px solid rgba(166, 166, 166, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            max-width: 600px;
+        }
+
+        .cta-title {
+            color: var(--surgical-steel);
+            font-size: var(--font-lg);
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .cta-description {
+            color: var(--surgical-dark);
+            font-size: var(--font-sm);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .tag {
+            background: rgba(166, 166, 166, 0.05);
+            border: 1px solid rgba(166, 166, 166, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: var(--font-sm);
+            color: var(--surgical-steel);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(166, 166, 166, 0.1);
+            border-color: var(--surgical-steel);
+            transform: translateY(-2px);
+        }
+
+        /* Кнопки */
+        .metal-button {
+            background: transparent;
+            border: 1px solid var(--surgical-steel);
+            color: var(--surgical-steel);
+            padding: 15px 35px;
+            font-size: var(--font-sm);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .metal-button:hover {
+            background: var(--surgical-steel);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: var(--surgical-steel);
+            color: var(--black);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: var(--font-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(166, 166, 166, 0.3);
+        }
+
+        .floating-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(166, 166, 166, 0.4);
+        }
+
+        /* Секция навыков */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .skill-category {
+            background: var(--black-dark);
+            border: 1px solid rgba(166, 166, 166, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: rgba(166, 166, 166, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--surgical-steel), transparent);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(166, 166, 166, 0.1);
+            border: 1px solid var(--surgical-steel);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--surgical-steel);
+            flex-shrink: 0;
+        }
+
+        .skill-title {
+            color: var(--surgical-steel);
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-lg);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .skill-subtitle {
+            color: var(--surgical-dark);
+            font-size: var(--font-sm);
+        }
+
+        .skill-list {
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .skill-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(166, 166, 166, 0.05);
+            display: flex;
+            align-items: center;
+            font-size: var(--font-sm);
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list i {
+            color: var(--surgical-steel);
+            margin-right: 12px;
+            font-size: 0.8rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-xl);
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--surgical-steel);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--surgical-dark);
+            font-size: var(--font-md);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--black-dark);
+            border: 1px solid rgba(166, 166, 166, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            border-color: rgba(166, 166, 166, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--surgical-steel), transparent);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(166, 166, 166, 0.1);
+            border: 1px solid var(--surgical-steel);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--surgical-steel);
+            margin: 0 auto 25px;
+        }
+
+        .service-title {
+            color: var(--surgical-steel);
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-lg);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-description {
+            color: var(--surgical-dark);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: var(--font-sm);
+        }
+
+        .service-duration {
+            color: var(--surgical-steel);
+            font-size: var(--font-sm);
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--black-dark);
+            border-top: 1px solid rgba(166, 166, 166, 0.1);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            color: var(--surgical-steel);
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-xl);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact-description {
+            color: var(--surgical-dark);
+            font-size: var(--font-md);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .floating-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+            }
+        }
+
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-logo">Борис Рихтер</div>
+                <div class="nav-links">
+                    <a href="#expertise" class="nav-link">Экспертиза</a>
+                    <a href="#services" class="nav-link">Услуги</a>
+                    <a href="#contact" class="nav-link">Контакты</a>
+                    <button class="nav-button">Забронировать</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Борис Рихтер</h1>
+                <div class="experience-badge">Продуктовый менеджер с опытом 8+ лет</div>
+                <div class="hero-subtitle">
+                    Создаю digital-продукты и автоматизирую бизнес-процессы
+                </div>
+
+                <!-- CTA блок в начале -->
+                <div class="cta-block">
+                    <div class="cta-title">🚀 Получите выгоду уже сегодня:</div>
+                    <p class="cta-description">
+                        Автоматизирую ваши бизнес-процессы, создам эффективный digital-продукт 
+                        и выстрою работающую систему аналитики. Сэкономлю время и ресурсы, 
+                        увеличив прибыль вашей компании.
+                    </p>
+                    <button class="metal-button">
+                        <i class="fas fa-calendar-check" style="margin-right: 10px;"></i>
+                        Забронировать консультацию
+                    </button>
+                </div>
+
+                <div class="hero-tags">
+                    <span class="tag">Продуктовый менеджмент</span>
+                    <span class="tag">Автоматизация n8n</span>
+                    <span class="tag">Дизайн систем</span>
+                    <span class="tag">Бизнес-процессы</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" style="background: var(--black-dark);">
+        <div class="container">
+            <h2 class="section-title">Экспертиза</h2>
+            <p class="section-subtitle">
+                8 лет опыта создания digital-продуктов и автоматизации бизнес-процессов в IT-компаниях
+            </p>
+            
+            <div class="skills-grid">
+                <!-- Продуктовый менеджмент -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <div class="skill-title">Продуктовый менеджмент</div>
+                            <div class="skill-subtitle">Стратегия, аналитика, развитие</div>
+                        </div>
+                    </div>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i>Стратегия и roadmap продукта</li>
+                        <li><i class="fas fa-check"></i>Анализ метрик и бизнес-показателей</li>
+                        <li><i class="fas fa-check"></i>UX/UI исследования и тестирования</li>
+                        <li><i class="fas fa-check"></i>Управление продуктом на всех этапах</li>
+                    </ul>
+                </div>
+
+                <!-- Автоматизация -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div>
+                            <div class="skill-title">Автоматизация n8n</div>
+                            <div class="skill-subtitle">Рабочие процессы и интеграции</div>
+                        </div>
+                    </div>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-bolt"></i>Разработка сложных workflow</li>
+                        <li><i class="fas fa-bolt"></i>Интеграции API и webhooks</li>
+                        <li><i class="fas fa-bolt"></i>ETL процессы и обработка данных</li>
+                        <li><i class="fas fa-bolt"></i>Мониторинг и оптимизация процессов</li>
+                    </ul>
+                </div>
+
+                <!-- Дизайн -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div>
+                            <div class="skill-title">Дизайн систем</div>
+                            <div class="skill-subtitle">Интерфейсы и пользовательский опыт</div>
+                        </div>
+                    </div>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i>Проектирование UI/UX</li>
+                        <li><i class="fas fa-check"></i>Дизайн веб-интерфейсов</li>
+                        <li><i class="fas fa-check"></i>Прототипирование и тестирование</li>
+                        <li><i class="fas fa-check"></i>Адаптивный дизайн</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: var(--black);">
+        <div class="container">
+            <h2 class="section-title">Услуги под ключ</h2>
+            <p class="section-subtitle">
+                Комплексные решения от анализа до внедрения и поддержки
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Создание digital-продуктов</h3>
+                    <p class="service-description">
+                        Полный цикл разработки: от идеи и проектирования до запуска и поддержки. 
+                        Веб-приложения, платформы, с
