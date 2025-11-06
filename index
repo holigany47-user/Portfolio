@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Борис Рихтер - Продакт менеджер & Автоматизация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <style>
+        :root {
+            --platinum: #E5E4E2;
+            --metal-dark: #2F2F2F;
+            --metal-medium: #4A4A4A;
+            --metal-light: #6B6B6B;
+            --accent-gold: #D4AF37;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8B8B8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section - Металлический стиль */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(229, 228, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            border-bottom: 1px solid rgba(229, 228, 226, 0.1);
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--platinum), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--platinum);
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .tag {
+            background: rgba(229, 228, 226, 0.1);
+            border: 1px solid rgba(229, 228, 226, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--platinum);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Металлические кнопки */
+        .metal-button {
+            background: linear-gradient(145deg, #4A4A4A, #2F2F2F);
+            border: 1px solid rgba(229, 228, 226, 0.3);
+            color: var(--platinum);
+            padding: 15px 40px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .metal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(212, 175, 55, 0.2),
+                inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-gold);
+        }
+
+        /* Секция навыков */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-category {
+            background: linear-gradient(145deg, #2F2F2F, #1A1A1A);
+            border: 1px solid rgba(229, 228, 226, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .automation-badge {
+            background: linear-gradient(45deg, var(--accent-gold), #FFD700);
+            color: var(--metal-dark);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Анимации */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 228, 226, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Борис Рихтер</h1>
+                <div class="hero-subtitle">Продакт менеджер & Специалист по автоматизации</div>
+                <div class="hero-tags">
+                    <span class="tag">Product Management</span>
+                    <span class="tag">n8n Automation</span>
+                    <span class="tag">Business Processes</span>
+                    <span class="tag">Data Analysis</span>
+                </div>
+                <p style="color: var(--text-secondary); max-width: 600px; margin-bottom: 30px;">
+                    Создаю эффективные продуктовые стратегии и автоматизирую бизнес-процессы с помощью n8n. 
+                    Превращаю сложные задачи в простые и автоматизированные решения.
+                </p>
+                <button class="metal-button">Обсудить проект</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section style="padding: 100px 0; background: var(--metal-dark);">
+        <div class="container">
+            <h2 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px; color: var(--platinum);">
+                Навыки и Экспертиза
+            </h2>
+            
+            <div class="skills-grid">
+                <!-- Продакт менеджмент -->
+                <div class="skill-category shimmer">
+                    <h3 style="color: var(--platinum); margin-bottom: 20px; font-size: 1.5rem;">🎯 Продакт менеджмент</h3>
+                    <ul style="color: var(--text-secondary); list-style: none;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-check" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            Стратегия продукта
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-check" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            Roadmap планирование
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-check" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            Анализ метрик
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <i class="fas fa-check" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            UX/UI исследования
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Автоматизация -->
+                <div class="skill-category shimmer">
+                    <div class="automation-badge">EXPERT</div>
+                    <h3 style="color: var(--platinum); margin-bottom: 20px; font-size: 1.5rem;">⚡ Автоматизация n8n</h3>
+                    <ul style="color: var(--text-secondary); list-style: none;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-bolt" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            Workflow разработка
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-bolt" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            Интеграции API
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-bolt" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            ETL процессы
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <i class="fas fa-bolt" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            Мониторинг и оптимизация
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Технические навыки -->
+                <div class="skill-category shimmer">
+                    <h3 style="color: var(--platinum); margin-bottom: 20px; font-size: 1.5rem;">🔧 Технологии</h3>
+                    <ul style="color: var(--text-secondary); list-style: none;">
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-code" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            n8n, Make, Zapier
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-database" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            SQL, Google Sheets
+                        </li>
+                        <li style="padding: 8px 0; border-bottom: 1px solid rgba(229, 228, 226, 0.1);">
+                            <i class="fas fa-chart-line" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            Google Analytics, Amplitude
+                        </li>
+                        <li style="padding: 8px 0;">
+                            <i class="fas fa-cloud" style="color: var(--accent-gold); margin-right: 10px;"></i>
+                            REST API, Webhooks
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section style="padding: 100px 0; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+        <div class="container">
+            <h2 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px; color: var(--platinum);">
+                Кейсы автоматизации
+            </h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 style="color: var(--platinum); margin-bottom: 15px;">📊 Автоматизация отчетности</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        Создал систему автоматической генерации отчетов из 5+ источников данных. 
+                        Время на формирование отчетов сокращено с 4 часов до 5 минут.
+                    </p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 style="color: var(--platinum); margin-bottom: 15px;">🤖 CRM интеграция</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        Настроил автоматическую синхронизацию между CRM, почтой и мессенджерами. 
+                        Увеличил скорость обработки заявок на 60%.
+                    </p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 style="color: var(--platinum); margin-bottom: 15px;">🔔 Умные уведомления</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        Разработал систему триггерных уведомлений для команды продаж. 
+                        Конверсия возросла на 25% благодаря своевременным действиям.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section style="padding: 80px 0; background: var(--metal-dark); border-top: 1px solid rgba(229, 228, 226, 0.1);">
+        <div class="container">
+            <div style="text-align: center;">
+                <h3 style="color: var(--platinum); margin-bottom: 30px; font-family: 'Playfair Display', serif;">
+                    Готовы автоматизировать ваши бизнес-процессы?
+                </h3>
+                <button class="metal-button" style="margin: 0 10px;">
+                    <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                    Написать в Telegram
+                </button>
+                <button class="metal-button" style="margin: 0 10px;">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                    Отправить Email
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Яндекс.Метрика -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+     
+        ym(97567899, "init", {
+             clickmap:true,
+             trackLinks:true,
+             accurateTrackBounce:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/97567899" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+</body>
+</html>
